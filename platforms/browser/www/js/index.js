@@ -45,31 +45,24 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-        app.onmain();
+           app.onmain();
     },
+
     onmain : function() {
          setTimeout(function() {
       startapp();
       }, 1000);
     }
+
 };
-
 function startapp() {
+    var user_id = window.localStorage.getItem("user_id");
+    if(!user_id) {
+        console.log("로그인 해주세요.");
+    location.replace('login.html') ;
+    } else {
+        console.log("로그인 되었음.");
     location.replace('main.html') ;
-}
-
-// msg 
-function alertDismissed() {
-    // do something
-}
-
-function alert_msg(title,msg) {
-    var title=title;
-    var msg=msg;
-   navigator.notification.alert(
-    msg,  // message
-    alertDismissed,         // callback
-    title,            // title
-    '확인'                  // buttonName
-);
+        
+    }
 }

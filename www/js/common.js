@@ -1,3 +1,6 @@
+var user_id = window.localStorage.getItem("user_id");
+var member_srl = window.localStorage.getItem("member_srl");
+
 function open_left() {
     UIkit.offcanvas.show('#offcanvas-left');
     load_left();
@@ -20,11 +23,11 @@ function alert_msg(title,msg) {
     msg,  // message
     alertDismissed,         // callback
     title,            // title
-    '확인'                  // buttonName
+    'OK'                  // buttonName
 );
 }
 function load_left() {
-    $.post("http://gallerybear.com/left_menu_app.php",
+    $.post("http://atopynews.co.kr/left_menu_app.php",
    {
     
     
@@ -35,7 +38,7 @@ $("#left_menu").html(data);
 }
 
 function load_right() {
-    $.post("http://gallerybear.com/right_menu_app.php",
+    $.post("http://atopynews.co.kr/right_menu_app.php",
    {
     
     
@@ -45,9 +48,12 @@ $("#right_menu").html(data);
    });
 }
 
-function talent_show(cat) {
+function photo_show(cat) {
   var cat=cat;
- $.post("http://gallerybear.com/talent_list_app.php",
+  // 지도 숨김 
+  $("#map").hide();
+  $("#top_banner").show();
+ $.post("http://atopynews.co.kr/photo_list_app.php",
    {
     cat:cat
     
@@ -62,7 +68,46 @@ $("#company_list").html(data);
 
 function freeboard_show(cat) {
   var cat=cat;
- $.post("http://gallerybear.com/freeboard_list_app.php",
+   $("#map").hide();
+  $("#top_banner").show();
+  $("#top_banner").html("freeboard");
+ $.post("http://atopynews.co.kr/freeboard_list_app.php",
+   {
+    cat:cat
+    
+       },
+   function(data){
+
+$("#company_list").html(data);
+UIkit.offcanvas.hide('#offcanvas-left');
+   });
+
+}
+
+function qna_show(cat) {
+  var cat=cat;
+   $("#map").hide();
+  $("#top_banner").show();
+  $("#top_banner").html("qna");
+ $.post("http://atopynews.co.kr/qna_list_app.php",
+   {
+    cat:cat
+    
+       },
+   function(data){
+
+$("#company_list").html(data);
+UIkit.offcanvas.hide('#offcanvas-left');
+   });
+
+}
+
+function goods_show(cat) {
+  var cat=cat;
+   $("#map").hide();
+  $("#top_banner").show();
+  $("#top_banner").html("goods");
+ $.post("http://atopynews.co.kr/goods_list_app.php",
    {
     cat:cat
     
@@ -77,6 +122,9 @@ UIkit.offcanvas.hide('#offcanvas-left');
 
 function parade_show(cat) {
   var cat=cat;
+   $("#map").hide();
+  $("#top_banner").show();
+  $("#top_banner").html("freeboard");
  $.post("http://gallerybear.com/parade_list_app.php",
    {
     cat:cat
@@ -92,6 +140,9 @@ UIkit.offcanvas.hide('#offcanvas-left');
 
 function chat_job_show(cat) {
   var cat=cat;
+   $("#map").hide();
+  $("#top_banner").show();
+  $("#top_banner").html("freeboard");
  $.post("http://gallerybear.com/chat_job_app.php",
    {
     sub_code:cat
@@ -106,9 +157,13 @@ UIkit.offcanvas.hide('#offcanvas-left');
 }
 
 function chat_show() {
+    $("#map").hide();
+  $("#top_banner").show();
+ 
    $.post("http://gallerybear.com/chat_app.php",
    {
     
+    memebruid:memberuid
     
        },
    function(data){
@@ -119,6 +174,9 @@ UIkit.offcanvas.hide('#offcanvas-left');
 
 }
 function friend_show() {
+    $("#map").hide();
+  $("#top_banner").show();
+ 
    $.post("http://gallerybear.com/around_list_app.php",
    {
     
@@ -132,8 +190,29 @@ UIkit.offcanvas.hide('#offcanvas-left');
 
 }
 
+function more_friend() {
+  var last_no=$("#last_no").val();
+  console.log(last_no);
+    $.post("http://gallerybear.com/around_list_app.php",
+   {
+    last_no:last_no
+    
+       },
+   function(data){
+
+$("#company_list").append(data);
+var obj = $("#member_list").offset();
+console.log("left: " + obj.left + "px, top: " + obj.top + "px");
+$("#member_list").css("margin-top", obj.top);
+   });
+
+}
+
 function global_show(sub_code) {
   var sub_code=sub_code;
+   $("#map").hide();
+  $("#top_banner").show();
+ 
    $.post("http://gallerybear.com/global_list_app.php",
    {
     sub_code:sub_code
@@ -147,8 +226,33 @@ UIkit.offcanvas.hide('#offcanvas-left');
 
 }
 
+function more_global(sub_code) {
+  var last_no=$("#last_no").val();
+  var sub_code=sub_code;
+  console.log(last_no);
+    $.post("http://gallerybear.com/global_list_app.php",
+   {
+    last_no:last_no,
+    sub_code:sub_code
+    
+       },
+   function(data){
+
+$("#company_list").append(data);
+var obj = $("#member_list").offset();
+console.log("left: " + obj.left + "px, top: " + obj.top + "px");
+
+$("#member_list").css("margin-top", obj.top);
+   });
+
+}
+
+
 function premium_show(sub_code) {
   var sub_code=sub_code;
+   $("#map").hide();
+  $("#top_banner").show();
+ 
   if (sub_code==1) {
     var url="http://gallerybear.com/premium1_app.php";
   }
@@ -206,20 +310,41 @@ function global_menu_show() {
   
  }
  // 메뉴 클릭
+// 맵 보이기 
+function map_show(kind_no) {
+  var kind_no=kind_no;
+  var url="http://gallerybear.com/map_kind_app.php";
+  UIkit.offcanvas.hide('#offcanvas-left');
+   $.post(url,
+   {
+    kind_no:kind_no
+    
+       },
+   function(data){
 
+$("#company_list").html(data);
+$("#map").show();
+$("#top_banner").hide();
+ 
+   });
+}
 // 모달 호출 
 function contents_modal_show(menu,no) {
     var menu=menu;
     var no=no;
-    if (menu=="talent") {
-      var url="http://gallerybear.com/talent_info_modal_app.php";
+    if (menu=="photo") {
+      var url="http://atopynews.co.kr/photo_info_modal_app.php";
     }
     if (menu=="freeboard") {
-      var url="http://gallerybear.com/freeboard_info_modal_app.php";
+      var url="http://atopynews.co.kr/freeboard_info_modal_app.php";
     }
-if (menu=="parade") {
-      var url="http://gallerybear.com/parade_info_modal_app.php";
+     if (menu=="qna") {
+      var url="http://atopynews.co.kr/qna_info_modal_app.php";
     }
+     if (menu=="goods") {
+      var url="http://atopynews.co.kr/goods_info_modal_app.php";
+    }
+
 
      $.post(url,
    {
@@ -228,12 +353,16 @@ if (menu=="parade") {
        },
    function(data){
 
-$("#contents_div").html(data);
+$("#modal_contents").html(data);
 
    });
 
-  jQuery('#contents_modal').addClass('active');
-    jQuery('#contents_modal_title').html('SELF CAMERA');
+var modal = UIkit.modal("#contents_uk_modal");
+
+
+    modal.show();
+
+ jQuery("#modal_title").html(menu);
 }
 
 function member_info_modal_show(memberuid) {
@@ -245,10 +374,232 @@ function member_info_modal_show(memberuid) {
        },
    function(data){
 
-$("#member_info_div").html(data);
+$("#member_modal_contents").html(data);
 
    });
-jQuery('#contents_modal').removeClass('active');
-  jQuery('#member_info_modal').addClass('active');
 
+
+var modal = UIkit.modal("#member_uk_modal");
+
+if ( modal.isActive() ) {
+    modal.hide();
+} else {
+    modal.show();
+}
+ 
+
+}
+
+
+function open_shop(no) {
+  var no=no;
+    $.post("http://gallerybear.com/shop_info_modal_app.php",
+   {
+    no:no
+    
+       },
+   function(data){
+
+$("#shop_modal_contents").html(data);
+
+   });
+$("#shop_modal_title").html("SHOP INFORMATION")
+
+var modal = UIkit.modal("#shop_uk_modal");
+
+if ( modal.isActive() ) {
+    modal.hide();
+} else {
+    modal.show();
+}
+ 
+
+}
+
+function zzim_member(uid) {
+ 
+  var uid2=uid;
+  console.log(memberuid+" "+uid2);
+   $.post("http://gallerybear.com/add_zzim.php",
+   {
+    uid:memberuid,
+    uid2:uid2
+   },
+   function(data){
+      
+     alert_msg("member","member picked member !");
+    
+   });
+}
+function msg_send(uid,msg) {
+  var my_uid=memberuid;
+  var by_uid=uid;
+  var msg=msg;
+    $.post("http://gallerybear.com/msg_save_app.php",
+   {
+    my_uid:my_uid,
+    by_uid:by_uid,
+    msg:msg
+   },
+   function(data){
+      
+     alert_msg("member","SEND MESSAGE");
+    
+   });
+}
+//  콘텐츠 등록 
+
+function add_photo(cat) {
+  var cat=cat;
+  console.log("category="+cat)
+    $.post("http://atopynews.co.kr/photo_camera_app.php",
+   {
+    member_srl:member_srl,
+    cat:cat
+    
+       },
+   function(data){
+
+$("#add_modal_contents").html(data);
+
+   });
+$("#add_modal_title").html("UPLOAD SELF CAEMRA")
+
+var modal = UIkit.modal("#add_contents_uk_modal");
+
+
+    modal.show();
+
+
+}
+
+function add_freeboard(cat) {
+  var cat=cat;
+  console.log("freeboard category="+member_srl);
+    $.post("http://atopynews.co.kr/freeboard_app.php",
+   {
+    member_srl:member_srl,
+    cat:cat
+    
+       },
+   function(data){
+
+$("#add_modal_contents").html(data);
+
+   });
+$("#add_modal_title").html("WRITE FREEBOARD")
+
+var modal = UIkit.modal("#add_contents_uk_modal");
+
+
+    modal.show();
+
+
+}
+
+function add_qna(cat) {
+  var cat=cat;
+  console.log("qna category="+member_srl);
+    $.post("http://atopynews.co.kr/qna_app.php",
+   {
+    member_srl:member_srl,
+    cat:cat
+    
+       },
+   function(data){
+
+$("#add_modal_contents").html(data);
+
+   });
+$("#add_modal_title").html("질문하기")
+
+var modal = UIkit.modal("#add_contents_uk_modal");
+
+
+    modal.show();
+
+
+}
+
+
+function add_goods(cat) {
+  var cat=cat;
+  console.log("goods category="+member_srl);
+    $.post("http://atopynews.co.kr/goods_app.php",
+   {
+    member_srl:member_srl,
+    cat:cat
+    
+       },
+   function(data){
+
+$("#add_modal_contents").html(data);
+
+   });
+$("#add_modal_title").html("상품등록")
+
+var modal = UIkit.modal("#add_contents_uk_modal");
+
+
+    modal.show();
+
+
+}
+
+function add_parade(cat) {
+  var cat=cat;
+  console.log("category="+cat)
+    $.post("http://gallerybear.com/parade_app.php",
+   {
+    memberuid:memberuid,
+    cat:cat
+    
+       },
+   function(data){
+
+$("#add_modal_contents").html(data);
+
+   });
+$("#add_modal_title").html("WRITE LET'S DRIVE")
+
+var modal = UIkit.modal("#add_contents_uk_modal");
+
+
+    modal.show();
+
+
+}
+
+// 프로필 대표 사진 설정
+function file_check(no) {
+  var no=no;
+  console.log(no);
+  $.post("http://gallerybear.com/file_check_app.php",
+   {
+    memberuid:memberuid,
+    no:no
+    
+       },
+   function(data){
+
+    view_photo_upload();
+
+   });
+}
+
+// 프로필 대표 사진 설정
+function file_delete(no) {
+  var no=no;
+  console.log(no);
+  $.post("http://gallerybear.com/file_delete_app.php",
+   {
+    memberuid:memberuid,
+    no:no
+    
+       },
+   function(data){
+
+    view_photo_upload();
+
+   });
 }

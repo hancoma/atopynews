@@ -39,16 +39,19 @@ var app = {
     receivedEvent: function(id) {
        
         console.log('Received Event: ' + id);
+       
         app.onmain();
     },
     onmain : function() {
    
-    }
+   
+    
+}
 };
 
 var mode="shop_list";
 
- $.post("http://gallerybear.com/map_api_app.php",
+ $.post("http://ku4h.com/map_api_app.php",
    {
     mode:mode
     

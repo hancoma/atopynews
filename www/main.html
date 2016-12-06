@@ -1,24 +1,5 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
 
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
 
 <head>
@@ -26,19 +7,10 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-    <!-- Good default declaration:
-    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-        * Enable inline JS: add 'unsafe-inline' to default-src
-        * Enable eval(): add 'unsafe-eval' to default-src
-    * Create your own at http://cspisawesome.com
-    -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' gallerybear.com * gap: ws: https://ssl.gstatic.com;img-src * data: content:;style-src 'self' 'unsafe-inline' data: blob:;script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
 
 
+   
     <script type="text/javascript" src="js/jquery.min.js"></script>
  
      
@@ -56,11 +28,105 @@
 <header class="bar bar-nav">
  <a class="icon icon-left-nav pull-left"  href="#"  onclick="open_left();"></a>
   <a class="icon icon-gear pull-right"  onclick="open_right();"></a>
-  <h1 class="title">GALLERYBEAR</h1>
+  <h1 class="title">아토피뉴스</h1>
 </header>
-<div id="company_list" style="overflow-y: scroll; width:100%; height:100%; margin-top:50px;">
+<div id="top_banner" style="height: 50px; display:none;">
+</div>
+<div id="map" data-uk-grid>map loading...
+</div>
+<div id="company_list" style="overflow-y: scroll; width:100%; height:100%;  ">
 </div>
 
+<div id="add_contents_uk_modal" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+                                <div class="uk-modal-dialog">
+                                    <button type="button" class="uk-modal-close uk-close"></button>
+                                    <div class="uk-modal-header">
+                                        <h2 id="add_modal_title">Loading</h2>
+                                    </div>
+                                    <p id="add_modal_contents">LOADING DATA...</p>
+                                    <div class="uk-modal-footer uk-text-right" id="modal_btn">
+                                        <button type="button" class="uk-button">Cancel</button>
+                                        <button type="button" class="uk-button uk-button-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+<div id="contents_uk_modal" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+                                <div class="uk-modal-dialog">
+                                    <button type="button" class="uk-modal-close uk-close"></button>
+                                    <div class="uk-modal-header">
+                                        <h2 id="modal_title">Loading</h2>
+                                    </div>
+                                    <p id="modal_contents">LOADING DATA...</p>
+                                    <div class="uk-modal-footer uk-text-right" id="modal_btn">
+                                        <button type="button" class="uk-button">Cancel</button>
+                                        <button type="button" class="uk-button uk-button-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+<div id="member_uk_modal" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+                                <div class="uk-modal-dialog">
+                                    <button type="button" class="uk-modal-close uk-close"></button>
+                                    <div class="uk-modal-header">
+                                        <h2 id="member_modal_title">MEMBER INFO</h2>
+                                    </div>
+                                    <p id="member_modal_contents">LOADING DATA...</p>
+                                    <div class="uk-modal-footer uk-text-right" id="member_modal_btn">
+                                        <button type="button" class="uk-button">Cancel</button>
+                                        <button type="button" class="uk-button uk-button-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+<div id="mypage_uk_modal" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+                                <div class="uk-modal-dialog">
+                                    <button type="button" class="uk-modal-close uk-close"></button>
+                                    <div class="uk-modal-header">
+                                        <h2 id="mypage_modal_title">MEMBER INFO</h2>
+                                    </div>
+                                    <p id="mypage_modal_contents">LOADING DATA...</p>
+                                    <div class="uk-modal-footer uk-text-right" id="member_modal_btn">
+                                        <button type="button" class="uk-button">Cancel</button>
+                                        <button type="button" class="uk-button uk-button-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+<div id="shop_uk_modal" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll;">
+                                <div class="uk-modal-dialog">
+                                    <button type="button" class="uk-modal-close uk-close"></button>
+                                    <div class="uk-modal-header">
+                                        <h2 id="shop_modal_title">SHOP INFOMATION</h2>
+                                    </div>
+                                    <p id="shop_modal_contents">LOADING DATA...</p>
+                                    <div class="uk-modal-footer uk-text-right" id="shop_modal_btn">
+                                        <button type="button" class="uk-button">Cancel</button>
+                                        <button type="button" class="uk-button uk-button-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+<div id="modal_chat" class="uk-modal" aria-hidden="true" style="display: none; overflow-y: scroll; ">
+                            <div class="uk-modal-dialog uk-modal-dialog-large">
+                                <button type="button" class="uk-modal-close uk-close"></button>
+                                <h1>CHATTING ROOM</h1>
+                                
+                   
+                                <div class="uk-overflow-container" id="chat_body" style="max-height: 464px;">
+                                    
+                                </div>
+                               
+                                <p>
+                                  <div class="input-group margin-bottom-20">
+        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+        <input type="hidden" name="room_no" value="" id="room_no">
+        <input type="text" class="form-control" placeholder="MESSAGE" id="chat_msg" onclick="gotop();">
+      </div><a href="#" class="uk-width-1-1 uk-button uk-button-success" id="send_btn" onclick="save_chat();">SEND</a>
+                                </p>
+                            </div>
+                        </div>
 <div id="member_info_modal" class="modal">
   <header class="bar bar-nav">
     <a class="icon icon-close pull-right" href="#member_info_modal"></a>
@@ -71,6 +137,8 @@
     <p class="content-padded" id="member_info_div">LOADING... CONTENTS</p>
   </div>
 </div>
+
+
 
 <div id="contents_modal" class="modal">
   <header class="bar bar-nav">
@@ -102,12 +170,162 @@
     <script type="text/javascript" src="cordova.js"></script>
      <script type="text/javascript" charset="utf-8" src="js/PushNotification.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-   
+   <script type="text/javascript" src="js/marker.js"></script>
     
     <script type="text/javascript">
         app.initialize();
     </script>
      <script type="text/javascript" src="js/common.js"></script>
+     <script type="text/javascript" src="js/camera.js"></script>
+     <script type="text/javascript" src="js/comment.js"></script>
+     <script type="text/javascript" src="js/chat.js"></script>
+     <script type="text/javascript" src="js/right_menu.js"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIjYYnR4RImDb8X_tD1s8ud0I0KeGAKDs"></script>
+     <script>
+    var map;
+    var locations;
+    var data_app;
+     var company_name;
+    var map_kind;
+var chicago = {lat: 41.85, lng: -87.65}; 
+    var markers = new Array();
+    var data_company=new Array();
+    var data_no=new Array();
+    var data_point_x=new Array();
+    var data_point_y=new Array();
+
+   
+     initMap();
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 5
+  });
+  var centerControlDiv = document.createElement('div');
+  var centerControl = new CenterControl(centerControlDiv, map);
+
+  centerControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+ 
+$.ajax({
+ type: "GET",
+ url: "http://gallerybear.com/shop_json_app.php",
+ crossDomain: true,
+ cache: false,
+ success: function(result){
+ var result=$.parseJSON(result);
+
+ $.each(result, function(i, field){
+   data_company.push(field.title);
+   data_no.push(field.no);
+   data_point_y.push(field.point_y);
+   data_point_x.push(field.point_x);
+
+ 
+
+ });
+ 
+
+ marker_load();
+
+
+
+ }});
+
+
+}
+
+function count_map() {
+  console.log(data_no.length);
+}
+
+function CenterControl(controlDiv, map) {
+var map2;
+  // Set CSS for the control border.
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = '#fff';
+  controlUI.style.border = '0px solid #fff';
+  controlUI.style.borderRadius = '0px';
+  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.marginBottom = '22px';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Click to recenter the map';
+  controlDiv.appendChild(controlUI);
+
+$.post("http://gallerybear.com/map_kind_menu.php",
+   {
+  
+    
+       },
+   function(data){
+    map2=data;
+     // Set CSS for the control interior.
+  var controlText = document.createElement('div');
+  controlText.style.color = 'rgb(25,25,25)';
+  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+  controlText.style.fontSize = '12px';
+  
+  controlText.style.paddingLeft = '5px';
+  controlText.style.paddingRight = '5px';
+  controlText.innerHTML = map2;
+  controlUI.appendChild(controlText);
+
+   });
+   
+   
+
+ 
+
+  // Setup the click event listeners: simply set the map to Chicago.
+  controlUI.addEventListener('click', function() {
+    map.setCenter(chicago);
+  });
+    
+}
+
+
+function marker_load() {
+
+
+  
+var infowindow = new google.maps.InfoWindow();
+      var marker, i;
+  
+    for (i = 0; i < data_no.length; i++) { 
+     
+       
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(data_point_x[i], data_point_y[i]),
+        map: map
+     });
+       
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+
+          
+          infowindow.setContent("<span onclick='open_shop("+data_no[i]+")'>"+data_company[i]+"</span>");
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+        markers.push(marker);
+    }
+    var markerClusterer = new MarkerClusterer(map, markers, {
+          maxZoom: 16,
+          gridSize: 50,
+          imagePath: './images/m'
+});
+
+}
+    
+
+
+  </script>
+ 
+
+
+
 </body>
 
 </html>
