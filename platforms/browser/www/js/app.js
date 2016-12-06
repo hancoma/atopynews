@@ -45,13 +45,7 @@ var app = {
     onmain : function() {
    
 
-     $.ajax({
-            type:"GET",
-            url:"http://www.atopynews.co.kr/app_data.php",
-            success:function(data){
-                $("#main_contents").html(data);
-            }
-        })
+    main_show();
 
  
 console.log("메인");

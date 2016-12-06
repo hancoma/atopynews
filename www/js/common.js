@@ -48,6 +48,16 @@ $("#right_menu").html(data);
    });
 }
 
+function main_show() {
+   $.ajax({
+            type:"GET",
+            url:"http://www.atopynews.co.kr/app_data.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+}
+
 function photo_show(cat) {
   var cat=cat;
   // 지도 숨김 
@@ -605,5 +615,5 @@ function file_delete(no) {
 }
 function open_news(url) {
   var url=url
-  var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+  var ref = cordova.InAppBrowser.open(url, '_self', 'location=no');
 }
