@@ -6,9 +6,9 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>ku4h</name>
-    <description>ku4h mobile app.</description>
-    <author email="ch7@daum.net" href="http://ku4h.com">hancoma</author>
+    <name>아토피뉴스</name>
+    <description>아토피뉴스</description>
+    <author email="ch7@daum.net" href="http://atopynews.co.kr">김대경</author>
     <content src="index.html" />
     <icon src="icon.png" />
     <access origin="*" />

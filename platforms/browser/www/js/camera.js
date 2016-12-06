@@ -49,7 +49,7 @@ sourceType: navigator.camera.PictureSourceType.CAMERA
         options.chunkedMode = false;
 
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://ku4h.com/upload_app.php", win, fail, options);
+        ft.upload(imageURI, "http://atopynews.co.kr/upload_app.php", win, fail, options);
     }
 
     function win(r) {

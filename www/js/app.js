@@ -44,19 +44,23 @@ var app = {
     },
     onmain : function() {
    
-   
+
+     $.ajax({
+            type:"GET",
+            url:"http://www.atopynews.co.kr/app_data.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+
+ 
+console.log("메인");
+//              var ref = cordova.InAppBrowser.open("http://www.atopynews.co.kr/index.php?mid=mobile_main&m=1", "_self", "location=no");
     
 }
 };
 
-var mode="shop_list";
 
- $.post("http://ku4h.com/map_api_app.php",
-   {
-    mode:mode
-    
-       },
-   function(data){
-$("#company_list").html(data);
-   });
+
+
 

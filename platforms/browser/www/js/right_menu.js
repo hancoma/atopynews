@@ -12,7 +12,7 @@ function view_mypage() {
 
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/my_info_app.php",
+    $.post("http://atopynews.co.kr/my_info_app.php",
    {
     uuid:uuid,
     memberuid:memberuid
@@ -42,7 +42,7 @@ $("#member_modal_contents").html(data);
 function view_msg() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/my_message_app.php",
+    $.post("http://atopynews.co.kr/my_message_app.php",
    {
     uuid:uuid,
     memberuid:memberuid
@@ -71,7 +71,7 @@ function join_msg_box(room_no,by_uid) {
   console.log(room_no+" "+memberuid);
 
 
-    $.post("http://gallerybear.com/my_message_room_app.php",
+    $.post("http://atopynews.co.kr/my_message_room_app.php",
    {
     room_no:room_no,
     memberuid:memberuid,
@@ -94,7 +94,7 @@ $("#mypage_modal_contents").html(data);
 function view_view_list() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/my_view_list_app.php",
+    $.post("http://atopynews.co.kr/my_view_list_app.php",
    {
     uuid:uuid,
     memberuid:memberuid
@@ -118,7 +118,7 @@ $("#mypage_modal_contents").html(data);
 
 function delete_view(no) {
   var no=no;
-   $.post("http://gallerybear.com/delete_view.php",
+   $.post("http://atopynews.co.kr/delete_view.php",
    {
     no:no
     
@@ -132,7 +132,7 @@ function delete_view(no) {
 function view_picked_member() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/my_pickedmember_app.php",
+    $.post("http://atopynews.co.kr/my_pickedmember_app.php",
    {
     uuid:uuid,
     memberuid:memberuid
@@ -155,7 +155,7 @@ $("#mypage_modal_contents").html(data);
 
 function delete_picked_member(no) {
   var no=no;
-   $.post("http://gallerybear.com/delete_view.php",
+   $.post("http://atopynews.co.kr/delete_view.php",
    {
     no:no
     
@@ -172,7 +172,7 @@ function delete_picked_member(no) {
 function view_picked_me() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/my_pickedme_app.php",
+    $.post("http://atopynews.co.kr/my_pickedme_app.php",
    {
     uuid:uuid
     
@@ -194,7 +194,7 @@ $("#mypage_modal_contents").html(data);
 
 function delete_picked_me(no) {
   var no=no;
-   $.post("http://gallerybear.com/delete_view.php",
+   $.post("http://atopynews.co.kr/delete_view.php",
    {
     no:no
     
@@ -210,7 +210,7 @@ function delete_picked_me(no) {
 function view_photo_upload() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/my_photoupload_app.php",
+    $.post("http://atopynews.co.kr/my_photoupload_app.php",
    {
     uuid:uuid,
     memberuid:memberuid
@@ -236,7 +236,7 @@ $("#mypage_modal_contents").html(data);
 function view_change_password() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/my_changepassword_app.php",
+    $.post("http://atopynews.co.kr/my_changepassword_app.php",
    {
     uuid:uuid
     
@@ -282,7 +282,7 @@ function save_password() {
     exit; 
   }   
 
-   $.post("http://gallerybear.com/save_password_app.php",
+   $.post("http://atopynews.co.kr/save_password_app.php",
    {
    memberuid:memberuid,
    old_password:old_password,
@@ -306,7 +306,7 @@ function save_password() {
 function view_membershipwithdrawal() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/membershipwithdrawal_app.php",
+    $.post("http://atopynews.co.kr/membershipwithdrawal_app.php",
    {
     uuid:uuid
     
@@ -332,7 +332,7 @@ $("#mypage_modal_contents").html(data);
 function view_setup() {
   var uuid=device.uuid;
  
-    $.post("http://gallerybear.com/setup_app.php",
+    $.post("http://atopynews.co.kr/setup_app.php",
    {
     uuid:uuid
     

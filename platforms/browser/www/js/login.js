@@ -89,7 +89,7 @@ function login_press(user_id,password) {
     var user_id=user_id;
     var password=password;
 
-     $.post("http://ku4h.com/login_check.php",
+     $.post("http://atopynews.co.kr/login_check.php",
    {
     user_id:user_id,
     password:password
@@ -104,7 +104,7 @@ function login_press(user_id,password) {
         window.localStorage.setItem("user_id", user_id);
         user_id = window.localStorage.getItem("user_id");
         console.log(user_id);
-               $.post("http://ku4h.com/login_check_uid.php",
+               $.post("http://atopynews.co.kr/login_check_uid.php",
                {
                 user_id:user_id
                    },
