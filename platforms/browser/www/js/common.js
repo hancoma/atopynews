@@ -603,3 +603,7 @@ function file_delete(no) {
 
    });
 }
+function open_news(url) {
+  var url=url
+  var ref = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
+}
