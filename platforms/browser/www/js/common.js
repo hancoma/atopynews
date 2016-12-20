@@ -48,6 +48,8 @@ $("#right_menu").html(data);
    });
 }
 
+// 메인페이지
+
 function main_show() {
    $.ajax({
             type:"GET",
@@ -57,6 +59,18 @@ function main_show() {
             }
         })
 }
+function chat_show() {
+  console.log("대화방");
+  $("#chat_icon").addClass('active');
+  $.ajax({
+            type:"GET",
+            url:"http://www.atopynews.co.kr/chat_app.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+}
+
 
 function photo_show(cat) {
   var cat=cat;
@@ -166,23 +180,6 @@ UIkit.offcanvas.hide('#offcanvas-left');
 
 }
 
-function chat_show() {
-    $("#map").hide();
-  $("#top_banner").show();
- 
-   $.post("http://gallerybear.com/chat_app.php",
-   {
-    
-    memebruid:memberuid
-    
-       },
-   function(data){
-
-$("#company_list").html(data);
-UIkit.offcanvas.hide('#offcanvas-left');
-   });
-
-}
 function friend_show() {
     $("#map").hide();
   $("#top_banner").show();

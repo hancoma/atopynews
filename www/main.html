@@ -15,7 +15,7 @@
  
      
        <link href="css/ratchet.min.css" rel="stylesheet">
- <link rel="stylesheet" type="text/css" href="css/uikit.min.css">
+ <link rel="stylesheet" type="text/css" href="css/uikit.gradient.min.css">
           <script src="js/uikit.js"></script>
           <script src="js/ratchet.js"></script>
              <link rel="stylesheet" type="text/css" href="css/app.css" />
@@ -165,8 +165,8 @@
 
                             </div>
 
-<nav class="bar bar-tab">
-  <a class="tab-item active" href="#" onclick="main_show()">
+<nav class="bar bar-tab bar-footer">
+  <a class="tab-item active" id="main_icon" href="#" onclick="main_show()">
     <span class="icon icon-home"></span>
     <span class="tab-label">아토피뉴스</span>
   </a>
@@ -174,7 +174,7 @@
     <span class="icon icon-compose"></span>
     <span class="tab-label">커뮤니티</span>
   </a>
-  <a class="tab-item" href="#">
+  <a class="tab-item"  id="chat_icon"  href="#"  onclick="chat_show()">
     <span class="icon uk-icon-comments"></span>
     <span class="tab-label">대화방</span>
   </a>
@@ -200,148 +200,7 @@
      <script type="text/javascript" src="js/comment.js"></script>
      <script type="text/javascript" src="js/chat.js"></script>
      <script type="text/javascript" src="js/right_menu.js"></script>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIjYYnR4RImDb8X_tD1s8ud0I0KeGAKDs"></script>
-     <script>
-    var map;
-    var locations;
-    var data_app;
-     var company_name;
-    var map_kind;
-var chicago = {lat: 41.85, lng: -87.65}; 
-    var markers = new Array();
-    var data_company=new Array();
-    var data_no=new Array();
-    var data_point_x=new Array();
-    var data_point_y=new Array();
-
    
-     initMap();
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 5
-  });
-  var centerControlDiv = document.createElement('div');
-  var centerControl = new CenterControl(centerControlDiv, map);
-
-  centerControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
- 
-$.ajax({
- type: "GET",
- url: "http://gallerybear.com/shop_json_app.php",
- crossDomain: true,
- cache: false,
- success: function(result){
- var result=$.parseJSON(result);
-
- $.each(result, function(i, field){
-   data_company.push(field.title);
-   data_no.push(field.no);
-   data_point_y.push(field.point_y);
-   data_point_x.push(field.point_x);
-
- 
-
- });
- 
-
- marker_load();
-
-
-
- }});
-
-
-}
-
-function count_map() {
-  console.log(data_no.length);
-}
-
-function CenterControl(controlDiv, map) {
-var map2;
-  // Set CSS for the control border.
-  var controlUI = document.createElement('div');
-  controlUI.style.backgroundColor = '#fff';
-  controlUI.style.border = '0px solid #fff';
-  controlUI.style.borderRadius = '0px';
-  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.marginBottom = '22px';
-  controlUI.style.textAlign = 'center';
-  controlUI.title = 'Click to recenter the map';
-  controlDiv.appendChild(controlUI);
-
-$.post("http://gallerybear.com/map_kind_menu.php",
-   {
-  
-    
-       },
-   function(data){
-    map2=data;
-     // Set CSS for the control interior.
-  var controlText = document.createElement('div');
-  controlText.style.color = 'rgb(25,25,25)';
-  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-  controlText.style.fontSize = '12px';
-  
-  controlText.style.paddingLeft = '5px';
-  controlText.style.paddingRight = '5px';
-  controlText.innerHTML = map2;
-  controlUI.appendChild(controlText);
-
-   });
-   
-   
-
- 
-
-  // Setup the click event listeners: simply set the map to Chicago.
-  controlUI.addEventListener('click', function() {
-    map.setCenter(chicago);
-  });
-    
-}
-
-
-function marker_load() {
-
-
-  
-var infowindow = new google.maps.InfoWindow();
-      var marker, i;
-  
-    for (i = 0; i < data_no.length; i++) { 
-     
-       
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(data_point_x[i], data_point_y[i]),
-        map: map
-     });
-       
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-
-          
-          infowindow.setContent("<span onclick='open_shop("+data_no[i]+")'>"+data_company[i]+"</span>");
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-        markers.push(marker);
-    }
-    var markerClusterer = new MarkerClusterer(map, markers, {
-          maxZoom: 16,
-          gridSize: 50,
-          imagePath: './images/m'
-});
-
-}
-    
-
-
-  </script>
  
 
 
