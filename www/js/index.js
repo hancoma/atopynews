@@ -57,6 +57,8 @@ var app = {
 };
 function startapp() {
     var user_id = window.localStorage.getItem("user_id");
+       location.replace('main.html') ;
+       exit;
     if(!user_id) {
         console.log("로그인 해주세요.");
     location.replace('login.html') ;

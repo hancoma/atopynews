@@ -1,8 +1,5 @@
 function open_chat (no) {
 
-
-
-
    var no=no;
  $.post("http://gallerybear.com/chat_list_app.php",
    {
@@ -20,6 +17,8 @@ $("#chat_body").html(data);
     modal.show();
 
 }
+
+
 function save_chat() {
   console.log(memberuid);
 	var room_no=$("#room_no").val();
@@ -200,4 +199,27 @@ function reload_chat(room_no,last_no) {
 $('.content').scrollTop(htop);
 
    });
+}
+
+
+function re_open_chat_room () {
+  var no=$("#room_no").val();
+  var uuid=device.uuid;
+   console.log(member_srl);
+ $.post("http://atopynews.co.kr/chat_list_app.php",
+   {
+    no:no,
+    member_srl:member_srl,
+    uuid:uuid
+    
+       },
+   function(data){
+$("#chat_body").html(data);
+console.log(data);
+chat_page_top();
+   });
+  $("#room_no").val(no);
+
+  
+
 }

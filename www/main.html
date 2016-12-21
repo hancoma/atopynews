@@ -52,12 +52,12 @@
 
 </div><nav class="bar bar-tab">
   <div class="uk-grid" style="line-height: 40px; width:100%;">
-    <div class="uk-width-8-10 uk-text-center">
+    <div class="uk-width-7-10 uk-text-center">
  <input type="hidden" name="room_no" value="" id="room_no">
-        <input type="text" class="form-control" placeholder="MESSAGE" id="chat_msg" style="margin-left:10px;" onclick="gotop();">
+        <input type="text" class="form-control" placeholder="MESSAGE" id="chat_msg" style="margin-left:10px;" onclick="re_open_chat_room();">
         </div>
-        <div class="uk-width-2-10 uk-text-left">
-      <a href="#" class="uk-button uk-button-danger uk-button-small" id="send_btn" onclick="save_chat();">전송</a>
+        <div class="uk-width-3-10 uk-text-right">
+      <a href="#" class="uk-button uk-button-danger uk-button-small" id="send_btn" onclick="save_chat();">전송</a><span class="uk-button uk-button-success uk-button-small" onclick="re_open_chat_room()"><i class="uk-icon-refresh"></i></span>
       </div>
   </div>
   </nav>

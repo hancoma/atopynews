@@ -122,3 +122,10 @@ h1 {
     padding:5px;
     color:#000;
 }
+
+.chat_msg_box_me {
+    border:1px #FFFF00 solid;
+    background-color: #FFFF00;
+    padding:5px;
+    color:#000;
+}
