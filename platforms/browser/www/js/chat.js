@@ -136,17 +136,34 @@ function save_chat() {
 
 
 // 대화갱신
+function sc_size_scheck() {
 
+var top=$("#chat_body").offset().top;
+var height=$("#chat_body").height();
+var height2=$("#chat_room_modal").height();
+
+var postop=(top*-1)+height2-90;
+var var1=height-postop;
+console.log("top"+postop+"height"+height+"cheight"+height2+"var1"+var1);
+if (height<height2) {
+check_new_chat();
+} else if (var1<190) {
+  check_new_chat();
+} 
+
+
+
+}
  function check_new_chat() {
   var last_no=$("#last_no").val();
   var room_no=$("#room_no").val();
   var check_chat=$("#check_chat").val();
-
   $("#check_chat").val("t");
   if (check_chat=="t") {
     exit;
   
   }
+
   console.log(last_no+" "+room_no+" "+check_chat); 
    $.post("http://atopynews.co.kr/check_new_chat_no_app.php",
    {
@@ -162,8 +179,8 @@ function save_chat() {
      if (data) {
       $("#last_no").val(data);
       $("#check_chat").val("t");
-    
-       reload_chat(room_no,last_no);
+    re_open_chat_room();
+     
      } else {
        $("#check_chat").val("f");
      }
@@ -179,7 +196,7 @@ function reload_chat(room_no,last_no) {
   var last_no=last_no;
   var uuid=device.uuid;
   console.log('last_no'+last_no+" "+room_no);
-   $.post("http://atopynews.co.kr/check_new_chat_app.php",
+   $.post("http://atopynews.co.kr/check_list_app.php",
    {
     
     last_no:last_no,
