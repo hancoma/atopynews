@@ -107,3 +107,97 @@ function chat_page_top() {
   $('.content').scrollTop(htop); 
   });
 }
+
+
+function save_chat() {
+  var uuid=device.uuid;
+  var room_no=$("#room_no").val();
+  var chat_msg=$("#chat_msg").val();
+  if (!chat_msg){
+    alert_msg("경고","내용을 입력해주세요.");
+    exit;
+  }
+
+
+    $.post("http://atopynews.co.kr/chat_save_app.php",
+   {
+    room_no:room_no,
+    uuid:uuid,
+    member_srl:member_srl,
+    chat_msg:chat_msg
+       },
+   function(data){
+  //open_chat(room_no);
+  console.log(data);
+  $("#chat_msg").val('');
+
+   });
+}
+
+
+
+// 대화갱신
+
+ function check_new_chat() {
+  var last_no=$("#last_no").val();
+  var room_no=$("#room_no").val();
+  var check_chat=$("#check_chat").val();
+
+  $("#check_chat").val("t");
+  if (check_chat=="t") {
+    exit;
+  
+  }
+  console.log(last_no+" "+room_no+" "+check_chat); 
+   $.post("http://atopynews.co.kr/check_new_chat_no_app.php",
+   {
+    
+    last_no:last_no,
+    room_no:room_no
+    
+       },
+   function(data){
+    console.log(data);
+     var data=data;
+
+     if (data) {
+      $("#last_no").val(data);
+      $("#check_chat").val("t");
+    
+       reload_chat(room_no,last_no);
+     } else {
+       $("#check_chat").val("f");
+     }
+
+
+   });
+
+}
+
+// 대화 내용 경신
+function reload_chat(room_no,last_no) {
+  var room_no=room_no;
+  var last_no=last_no;
+  var uuid=device.uuid;
+  console.log('last_no'+last_no+" "+room_no);
+   $.post("http://atopynews.co.kr/check_new_chat_app.php",
+   {
+    
+    last_no:last_no,
+    room_no:room_no,
+    member_srl:member_srl,
+    uuid:uuid
+    
+       },
+   function(data){
+     if (data) {
+      
+        $("#chat_body").append(data); 
+
+     }
+ $("#check_chat").val("f"); 
+ htop=$('#chat_body').height();
+$('.content').scrollTop(htop);
+
+   });
+}
