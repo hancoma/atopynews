@@ -1,6 +1,7 @@
 var user_id = window.localStorage.getItem("user_id");
 var member_srl = window.localStorage.getItem("member_srl");
-
+var uuid=device.uuid;
+var basic_url="http://atopynews.co.kr/";
 function open_left() {
     UIkit.offcanvas.show('#offcanvas-left');
     load_left();

@@ -115,3 +115,10 @@ h1 {
     border-radius: 50%;
 
 }
+.chat_msg_box {
+    border:1px #fff solid;
+    background-color: #fff;
+    
+    padding:5px;
+    color:#000;
+}

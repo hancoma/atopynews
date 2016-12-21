@@ -45,3 +45,65 @@ function gotop() {
   console.log("top");
    
 }
+
+function make_room() {
+  var uuid=device.uuid;
+  UIkit.modal.prompt('방 제목', '', function(title){ 
+    var title=title;
+    if (!title) {
+      alert_msg("경고","방제목을 입력 하지 않았습니다.");
+     
+    } else {
+    console.log(member_srl+ " "+title+" "+uuid);
+    chat_room_make(title,member_srl,uuid);
+    }
+  });
+
+}
+
+function chat_room_make(title,member_srl,uuid){
+  var title=title;
+  var member_srl=member_srl;
+  var uuid=uuid;
+    $.post("http://atopynews.co.kr/make_room.php",
+   {
+    title:title,
+    member_srl:member_srl,
+    uuid:uuid
+       },
+   function(data){
+    chat_show();
+    alert_msg("알림","대화방이 생성되었습니다.");
+    
+   });
+}
+
+function open_chat_room (no) {
+$("#chat_room_modal").addClass('active');
+  var no=no;
+  var uuid=device.uuid;
+   console.log(member_srl);
+ $.post("http://atopynews.co.kr/chat_list_app.php",
+   {
+    no:no,
+    member_srl:member_srl,
+    uuid:uuid
+    
+       },
+   function(data){
+$("#chat_body").html(data);
+console.log(data);
+chat_page_top();
+   });
+  $("#room_no").val(no);
+
+  
+
+}
+function chat_page_top() {
+  $(document).ready(function(){
+  htop=$('#chat_body').height();
+  console.log("h"+htop);
+  $('.content').scrollTop(htop); 
+  });
+}
