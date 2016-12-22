@@ -72,12 +72,12 @@ $("#login_btn").click(
     var user_id=$("#user_id").val();
     var password=$("#password").val();
     if (!user_id) {
-        alert_msg("LOGIN","plz user id"); 
+        alert_msg("LOGIN","메일을 입력하세요."); 
         
         exit;
     }
     if (!password) {
-        alert_msg("LOGIN","plz PASSWORD"); 
+        alert_msg("LOGIN","비밀번호를 입력하세요."); 
       
         exit;
     }

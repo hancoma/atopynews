@@ -1,5 +1,6 @@
 var add_category;
 var add_mode;
+var add_subject;
 var add_contents;
 var uuid;
 var tag;
@@ -10,7 +11,16 @@ function getImage(cat,mode) {
     uuid=device.uuid;
     console.log("카메라");
     if (add_mode=="freeboard") {
-    add_contents=$("#freeboard_contents").val();
+          add_subject=$("#freeboard_subject").val();
+          add_contents=$("#freeboard_contents").val();
+          if (!add_subject) {
+            alert_msg("경고","제목을 입력하세요.");
+            exit;
+          } else if (!add_contents) {
+            alert_msg("경고","내용을 입력하세요.");
+            exit;
+          }
+
     } else if (add_mode=="qna") {
     add_contents=$("#qna_contents").val();
     } else if (add_mode=="goods") {
@@ -21,6 +31,10 @@ function getImage(cat,mode) {
     } else if (add_mode=="photo") 
     {
          tag=$("#tag").val();
+         if (!tag) {
+          alert_msg("경고","태그를 먼저 입력하세요.");
+          exit;
+         }
     }
 
 
@@ -51,6 +65,8 @@ sourceType: navigator.camera.PictureSourceType.CAMERA
         params.contents=add_contents;
         params.uuid=uuid;
         params.tag=tag;
+        params.subject=add_subject;
+
      
 
         options.params = params;

@@ -94,8 +94,7 @@ $("#main_contents").html(data);
 
 function freeboard_show(cat) {
   var cat=cat;
-   $("#map").hide();
-  $("#top_banner").show();
+$("#board_icon").addClass('active');
   $("#top_banner").html("freeboard");
  $.post("http://atopynews.co.kr/freeboard_list_app.php",
    {
@@ -104,8 +103,8 @@ function freeboard_show(cat) {
        },
    function(data){
 
-$("#company_list").html(data);
-UIkit.offcanvas.hide('#offcanvas-left');
+$("#main_contents").html(data);
+
    });
 
 }
@@ -371,7 +370,7 @@ var modal = UIkit.modal("#contents_uk_modal");
 
     modal.show();
 
- jQuery("#modal_title").html(menu);
+ jQuery("#modal_title").html("커뮤니티");
 }
 
 function member_info_modal_show(memberuid) {
@@ -496,7 +495,7 @@ function add_freeboard(cat) {
 $("#add_modal_contents").html(data);
 
    });
-$("#add_modal_title").html("WRITE FREEBOARD")
+$("#add_modal_title").html("글작성");
 
 var modal = UIkit.modal("#add_contents_uk_modal");
 
