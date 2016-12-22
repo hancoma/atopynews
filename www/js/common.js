@@ -121,7 +121,17 @@ function shop_show() {
         })
 }
 
-
+function blog_show() {
+  console.log("블로그");
+  $("#blog_icon").addClass('active');
+  $.ajax({
+            type:"GET",
+            url:"http://www.atopynews.co.kr/atopy_blog.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+}
 
 function qna_show(cat) {
   var cat=cat;
