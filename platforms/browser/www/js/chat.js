@@ -149,7 +149,9 @@ if (height<height2) {
 check_new_chat();
 } else if (var1<190) {
   check_new_chat();
-} 
+} else if (height==0) {
+  check_new_chat();
+}
 
 
 
