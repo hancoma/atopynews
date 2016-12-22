@@ -57,8 +57,9 @@ var app = {
 };
 function startapp() {
     var user_id = window.localStorage.getItem("user_id");
-    
-    if(!user_id) {
+    var member_srl = window.localStorage.getItem("member_srl");
+    console.log("회원번호"+member_srl);
+    if(!member_srl) {
         console.log("로그인 해주세요.");
     location.replace('login.html') ;
     } else {

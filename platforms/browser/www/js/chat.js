@@ -141,15 +141,16 @@ function sc_size_scheck() {
 var top=$("#chat_body").offset().top;
 var height=$("#chat_body").height();
 var height2=$("#chat_room_modal").height();
-
+var last_no=$("#last_no").val();
 var postop=(top*-1)+height2-90;
 var var1=height-postop;
+console.log(last_no);
 console.log("top"+postop+"height"+height+"cheight"+height2+"var1"+var1);
 if (height<height2) {
 check_new_chat();
 } else if (var1<190) {
   check_new_chat();
-} else if (height==0) {
+} else if (last_no==0) {
   check_new_chat();
 }
 
