@@ -109,6 +109,20 @@ $("#main_contents").html(data);
 
 }
 
+function shop_show() {
+  console.log("쇼핑");
+  $("#shop_icon").addClass('active');
+  $.ajax({
+            type:"GET",
+            url:"http://www.atopynews.co.kr/shop_list.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+}
+
+
+
 function qna_show(cat) {
   var cat=cat;
    $("#map").hide();
@@ -352,6 +366,9 @@ function contents_modal_show(menu,no) {
      if (menu=="goods") {
       var url="http://atopynews.co.kr/goods_info_modal_app.php";
     }
+    if (menu=="shop") {
+     var url="http://atopynews.co.kr/shop_info_modal_app.php"; 
+    }
 
 
      $.post(url,
@@ -401,13 +418,15 @@ if ( modal.isActive() ) {
 
 function open_shop(no) {
   var no=no;
-    $.post("http://gallerybear.com/shop_info_modal_app.php",
+  console.log(no);
+  $("#shop_modal_contents").html("");
+    $.post("http://atopynews.co.kr/shop_info_modal_app.php",
    {
     no:no
     
        },
    function(data){
-
+console.log(data);
 $("#shop_modal_contents").html(data);
 
    });

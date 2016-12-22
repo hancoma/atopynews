@@ -126,10 +126,10 @@
                                     <button type="button" class="uk-modal-close uk-close"></button>
                                     <div class="uk-modal-header">
                                         <h2 id="shop_modal_title">SHOP INFOMATION</h2>
-                                    </div>
-                                    <p id="shop_modal_contents">LOADING DATA...</p>
+                                    </div>  <div class="uk-overflow-container" style="max-height: 468px;">
+                                    <p id="shop_modal_contents">LOADING DATA...</p></div>
                                     <div class="uk-modal-footer uk-text-right" id="shop_modal_btn">
-                                        <button type="button" class="uk-button">Cancel</button>
+                                        <button type="button" class="uk-button uk-modal-close">Cancel</button>
                                         <button type="button" class="uk-button uk-button-primary">Save</button>
                                     </div>
                                 </div>
@@ -194,6 +194,10 @@
   <a class="tab-item" href="#"  id="photo_icon"  href="#"  onclick="photo_show()">
     <span class="icon uk-icon-camera"></span>
     <span class="tab-label">사진공유</span>
+  </a>
+   <a class="tab-item" href="#" id="shop_icon" href="#"  onclick="shop_show()">
+    <span class="icon uk-icon-shopping-bag"></span>
+    <span class="tab-label">쇼핑</span>
   </a>
   <a class="tab-item" href="#">
     <span class="icon icon-gear"></span>
