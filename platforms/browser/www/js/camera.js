@@ -1,10 +1,13 @@
 var add_category;
 var add_mode;
 var add_contents;
+var uuid;
+var tag;
 
 function getImage(cat,mode) {
     add_category=cat;
     add_mode=mode;
+    uuid=device.uuid;
     console.log("카메라");
     if (add_mode=="freeboard") {
     add_contents=$("#freeboard_contents").val();
@@ -15,6 +18,9 @@ function getImage(cat,mode) {
     } else if (add_mode=="parade")
     {
          add_contents=$("#parade_contents").val();
+    } else if (add_mode=="photo") 
+    {
+         tag=$("#tag").val();
     }
 
 
@@ -43,6 +49,8 @@ sourceType: navigator.camera.PictureSourceType.CAMERA
         params.mode=add_mode;
         params.member_srl=member_srl;
         params.contents=add_contents;
+        params.uuid=uuid;
+        params.tag=tag;
      
 
         options.params = params;

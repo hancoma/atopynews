@@ -78,8 +78,7 @@ function chat_show() {
 function photo_show(cat) {
   var cat=cat;
   // 지도 숨김 
-  $("#map").hide();
-  $("#top_banner").show();
+  $("#photo_icon").addClass('active');
  $.post("http://atopynews.co.kr/photo_list_app.php",
    {
     cat:cat
@@ -87,8 +86,8 @@ function photo_show(cat) {
        },
    function(data){
 
-$("#company_list").html(data);
-  UIkit.offcanvas.hide('#offcanvas-left');
+$("#main_contents").html(data);
+  
    });
 
 }
