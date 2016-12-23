@@ -3,6 +3,7 @@ var member_srl = window.localStorage.getItem("member_srl");
 var uuid=device.uuid;
 var basic_url="http://atopynews.co.kr/";
 var room_no=0;
+var menu;
 function open_left() {
     UIkit.offcanvas.show('#offcanvas-left');
     load_left();
@@ -62,6 +63,7 @@ function main_show() {
         })
 }
 function chat_show() {
+  menu="chat";
   console.log("대화방");
   $("#chat_icon").addClass('active');
   $.ajax({
@@ -644,3 +646,24 @@ function open_news(url) {
   var url=url
   var ref = cordova.InAppBrowser.open(url, '_self', 'location=no');
 }
+
+// 종류
+function exit_show() {
+navigator.notification.confirm("종료하시게습니까? ", onConfirm, "Confirmation", "Yes,No"); 
+}
+
+function onConfirm(button) {
+    if(button==2){//If User selected No, then we just do nothing
+        return;
+    }else{
+        navigator.app.exitApp();// Otherwise we quit the app.
+    }
+}
+
+
+  function onBackKeyDown() {
+    console.log("뒤로가기 "+menu);
+    if (menu=="chat_open") {
+      close_chat_room(); //대화방 나가기 
+      
+    }    }

@@ -45,11 +45,11 @@ alert('사진 등록에 실패 했습니다.');
 },{
 quality: 100,
 destinationType: navigator.camera.DestinationType.FILE_URI,
-sourceType: navigator.camera.PictureSourceType.CAMERA
+sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 });
     }
     function uploadPhoto(imageURI) {
-        console.log("category = "+add_category);
+        
          navigator.notification.activityStart("사진 등록 중", "사진 업로드 중입니다.");
         var options = new FileUploadOptions();
         options.fileKey="files";

@@ -1,22 +1,4 @@
-function open_chat (no) {
 
-   var no=no;
- $.post("http://gallerybear.com/chat_list_app.php",
-   {
-    no:no
-    
-       },
-   function(data){
-$("#chat_body").html(data);
-   });
- 	$("#room_no").val(no);
-
-    var modal = UIkit.modal("#modal_chat", {center: true});
-
-
-    modal.show();
-
-}
 
 
 function save_chat() {
@@ -78,6 +60,7 @@ function chat_room_make(title,member_srl,uuid){
 }
 
 function open_chat_room (no) {
+  menu="chat_open";
 $("#chat_room_modal").addClass('active');
   var no=no;
   var uuid=device.uuid;
@@ -242,4 +225,18 @@ chat_page_top();
 
   
 
+}
+
+function close_chat_room() {
+  navigator.notification.confirm("대화방을 나가시겠습니까 ?", exit_chat_room, "대화방", "예,아니요"); 
+    
+}
+
+function exit_chat_room(button) {
+    if(button==2){//If User selected No, then we just do nothing
+        return;
+    }else{
+        $("#chat_room_modal").removeClass('active');
+        menu="chat";
+    }
 }
