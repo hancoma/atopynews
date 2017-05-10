@@ -1,6 +1,6 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.mgallerybear.anyphoto" version="1.0.0">
-  <name>아토피뉴스</name>
-  <description>아토피뉴스</description>
+﻿<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.atopynews.atopynews" version="1.0.0">
+  <name>atopynews</name>
+  <description>atopynews</description>
   <author href="http://atopynews.co.kr" email="ch7@daum.net">김대경</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -10,12 +10,12 @@
   <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1"/>
   <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1"/>
   <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0"/>
-  <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2"/>
+  <plugin name="cordova-plugin-console" source="npm" spec="~1.0.3"/>
   <plugin name="cordova-plugin-contacts" source="npm" spec="~2.0.1"/>
   <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1"/>
   <plugin name="cordova-plugin-device-motion" source="npm" spec="~1.2.0"/>
   <plugin name="cordova-plugin-device-orientation" source="npm" spec="~1.0.2"/>
-  <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0"/>
+  <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.1"/>
   <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1"/>
   <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0"/>
   <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0"/>
@@ -27,6 +27,13 @@
   <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2"/>
   <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0"/>
   <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
+<plugin name="cordova-plugin-sim"   source="npm" />
+  <preference name="android-build-tool" value="gradle" />
+<plugin name="phonegap-plugin-push" source="npm">
+    <param name="SENDER_ID" value="660804254402" />
+</plugin>
+
+    
   <icon src="icon.png"/>
   <platform name="android">
     <icon src="www/res/icon/android/drawable-ldpi-icon.png" density="ldpi"/>
@@ -47,7 +54,7 @@
     <splash src="www/res/screen/android/drawable-port-xhdpi-screen.png" density="port-xhdpi"/>
     <splash src="www/res/screen/android/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
-  </platform>
+    </platform>
   <platform name="ios">
     <icon src="www/res/icon/ios/icon.png" platform="ios" width="57" height="57"/>
     <icon src="www/res/icon/ios/icon@2x.png" platform="ios" width="114" height="114"/>
@@ -98,6 +105,7 @@
     <icon src="www/res/icon/windows/Wide310x150Logo.scale-240.png" platform="windows" width="744" height="360"/>
     <splash src="www/res/screen/windows/SplashScreenPhone.scale-240.png" platform="windows" width="1152" height="1920"/>
   </platform>
+
   <access origin="*"/>
   <access origin="tel:*" launch-external="true"/>
   <allow-intent href="http://*/*"/>

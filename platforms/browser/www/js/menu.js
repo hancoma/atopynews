@@ -1,7 +1,7 @@
 function main_show() {
    $.ajax({
             type:"GET",
-            url:"http://www.atopynews.co.kr/app_data.php",
+            url:"http://ku4h.com/app_data.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -13,7 +13,7 @@ function chat_show() {
   $("#chat_icon").addClass('active');
   $.ajax({
             type:"GET",
-            url:"http://www.atopynews.co.kr/chat_app.php",
+            url:"http://ku4h.com/chat_app.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -26,7 +26,7 @@ function photo_show(cat) {
   var cat=cat;
   // 지도 숨김 
   $("#photo_icon").addClass('active');
- $.post("http://atopynews.co.kr/photo_list_app.php",
+ $.post("http://ku4h.com/photo_list_app.php",
    {
     cat:cat
     
@@ -43,7 +43,7 @@ function freeboard_show(cat) {
   var cat=cat;
 $("#board_icon").addClass('active');
   $("#top_banner").html("freeboard");
- $.post("http://atopynews.co.kr/freeboard_list_app.php",
+ $.post("http://ku4h.com/freeboard_list_app.php",
    {
     cat:cat
     
@@ -61,7 +61,7 @@ function shop_show() {
   $("#shop_icon").addClass('active');
   $.ajax({
             type:"GET",
-            url:"http://www.atopynews.co.kr/shop_list.php",
+            url:"http://www.ku4h.com/shop_list.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -73,7 +73,7 @@ function blog_show() {
   $("#blog_icon").addClass('active');
   $.ajax({
             type:"GET",
-            url:"http://www.atopynews.co.kr/atopy_blog.php",
+            url:"http://www.ku4h.com/atopy_blog.php",
             success:function(data){
                 $("#main_contents").html(data);
             }

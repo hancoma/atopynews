@@ -4,6 +4,12 @@ var uuid=device.uuid;
 var basic_url="http://atopynews.co.kr/";
 var room_no=0;
 var menu;
+
+function open_url(url) {
+  var url=url
+  var ref = cordova.InAppBrowser.open(url, '_self', 'location=no');
+}
+
 function open_left() {
     UIkit.offcanvas.show('#offcanvas-left');
     load_left();
@@ -56,6 +62,7 @@ $("#right_menu").html(data);
 function main_show() {
    $.ajax({
             type:"GET",
+            data: { member_srl : member_srl },
             url:"http://www.atopynews.co.kr/app_data.php",
             success:function(data){
                 $("#main_contents").html(data);
@@ -68,7 +75,8 @@ function chat_show() {
   $("#chat_icon").addClass('active');
   $.ajax({
             type:"GET",
-            url:"http://www.atopynews.co.kr/chat_app.php",
+            data: { member_srl : member_srl },
+            url:"http://www.atopynews.co.kr/chat_room_list_app.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -76,6 +84,24 @@ function chat_show() {
 }
 
 
+function talk_show() {
+  // 지도 숨김 
+ // $("#photo_icon").addClass('active');
+ $("#chat_icon").addClass('active');
+ console.log(member_srl+"talk");
+
+ $.post("http://atopynews.co.kr/talk_list_app.php",
+   {
+    member_srl:member_srl
+    
+       },
+   function(data){
+
+$("#main_contents").html(data);
+  
+   });
+
+}
 
 function photo_show(cat) {
   var cat=cat;
@@ -94,13 +120,43 @@ $("#main_contents").html(data);
 
 }
 
+function photo_tag_show(tag) {
+  var tag=tag;
+  // 지도 숨김 
+  console.log(tag);
+  $("#photo_icon").addClass('active');
+ $.post("http://atopynews.co.kr/photo_list_app.php",
+   {
+  
+    tag:tag
+    
+       },
+   function(data){
+
+$("#main_contents").html(data);
+  
+   });
+
+}
+function photo_search_show() {
+
+UIkit.modal.prompt("검색어:", "", function(tag){
+   photo_tag_show(tag);
+});
+
+
+
+}
+
 function freeboard_show(cat) {
   var cat=cat;
+  member_srl=member_srl;
 $("#board_icon").addClass('active');
-  $("#top_banner").html("freeboard");
+  $("#top_banner").html("커뮤니티");
  $.post("http://atopynews.co.kr/freeboard_list_app.php",
    {
-    cat:cat
+    cat:cat,
+    member_srl:member_srl
     
        },
    function(data){
@@ -366,6 +422,7 @@ $("#top_banner").hide();
 function contents_modal_show(menu,no) {
     var menu=menu;
     var no=no;
+   console.log(member_srl);
     if (menu=="photo") {
       var url="http://atopynews.co.kr/photo_info_modal_app.php";
     }
@@ -385,7 +442,8 @@ function contents_modal_show(menu,no) {
 
      $.post(url,
    {
-    no:no
+    no:no,
+    member_srl:member_srl
     
        },
    function(data){
@@ -399,7 +457,7 @@ var modal = UIkit.modal("#contents_uk_modal");
 
     modal.show();
 
- jQuery("#modal_title").html("커뮤니티");
+ jQuery("#modal_title").html("내용보기");
 }
 
 function member_info_modal_show(memberuid) {
@@ -647,9 +705,17 @@ function open_news(url) {
   var ref = cordova.InAppBrowser.open(url, '_self', 'location=no');
 }
 
+function open_down(url) {
+  var url=url
+  var ref = cordova.InAppBrowser.open(url, '_system', 'location=no');
+
+
+}
+
+
 // 종류
 function exit_show() {
-navigator.notification.confirm("종료하시게습니까? ", onConfirm, "Confirmation", "Yes,No"); 
+navigator.notification.confirm("종료하시겠습니까? ", onConfirm, "Confirmation", "Yes,No"); 
 }
 
 function onConfirm(button) {
@@ -667,3 +733,70 @@ function onConfirm(button) {
       close_chat_room(); //대화방 나가기 
       
     }    }
+
+// 로그아웃
+function logout() {
+  window.localStorage.removeItem("user_id");
+  window.localStorage.clear();
+    window.localStorage.removeItem("member_srl");
+  window.localStorage.clear();
+  user_id=null;
+  member_srl=null;
+   location.replace('login.html') ;
+
+}
+
+function view_mypage() {
+  console.log("내정보");
+}
+ 
+  function delete_contents(mode,no) {
+  var mode=mode;
+   var no=no;
+    $.post("http://atopynews.co.kr/freeboard_delete.php",
+   {
+   
+    no:no
+    
+       },
+   function(data){
+     freeboard_show();
+
+   });
+}
+
+ function delete_comment(no) {
+ 
+   var no=no;
+
+    $.post("http://atopynews.co.kr/freeboard_comment.php",
+   {
+   
+    no:no
+    
+       },
+   function(data){
+    var div_name="#contents_"+no;
+     $(div_name).hide();
+
+   });
+}
+
+function check_msg() {
+ console.log("메시지 채크");
+  $.post("http://atopynews.co.kr/check_msg.php",
+   {
+    member_srl:member_srl
+       },
+   function(data){
+    var data=data;
+    if (data=="no"){
+    console.log("메시지없음");  
+    } else {
+    console.log(data);
+    alert_msg("초대",data);
+    }
+   });
+
+}
+

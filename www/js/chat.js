@@ -10,7 +10,7 @@ function save_chat() {
 		exit;
 	}
 
-		$.post("http://gallerybear.com/chat_save_app.php",
+		$.post("http://ku4h.com/chat_save_app.php",
    {
    	room_no:room_no,
    	memberuid:memberuid,
@@ -29,24 +29,44 @@ function gotop() {
 
 function make_room() {
   var uuid=device.uuid;
-  UIkit.modal.prompt('방 제목', '', function(title){ 
-    var title=title;
-    if (!title) {
-      alert_msg("경고","방제목을 입력 하지 않았습니다.");
-     
-    } else {
-    console.log(member_srl+ " "+title+" "+uuid);
-    chat_room_make(title,member_srl,uuid);
-    }
-  });
+   var modal = UIkit.modal("#make_chat_uk_modal");
+    modal.show();
 
+}
+
+function make_chat_room() {
+  var title=$("#chat_room_title").val();
+  var mode=$("#chat_mode").val();
+  var uuid=device.uuid;
+
+  if (!title) {
+    alert_msg("방제목을 입력하세요.");
+    return;
+  }
+  if (mode==2) {
+   alert_msg("알림","비공개방은 대화상태를 초대해야만 대화가 가능합니다.");
+  }
+  $.post("http://ku4h.com/make_room_app.php",
+   {
+    title:title,
+    member_srl:member_srl,
+    mode:mode,
+    uuid:uuid
+       },
+   function(data){
+   console.log(data);
+    chat_show();
+    alert_msg("알림","대화방이 생성되었습니다.");
+  var modal = UIkit.modal("#make_chat_uk_modal");
+    modal.hide();  
+   });
 }
 
 function chat_room_make(title,member_srl,uuid){
   var title=title;
   var member_srl=member_srl;
   var uuid=uuid;
-    $.post("http://atopynews.co.kr/make_room.php",
+    $.post("http://ku4h.com/make_room.php",
    {
     title:title,
     member_srl:member_srl,
@@ -57,6 +77,7 @@ function chat_room_make(title,member_srl,uuid){
     alert_msg("알림","대화방이 생성되었습니다.");
     
    });
+     
 }
 
 function open_chat_room (no) {
@@ -65,7 +86,7 @@ $("#chat_room_modal").addClass('active');
   var no=no;
   var uuid=device.uuid;
    console.log(member_srl);
- $.post("http://atopynews.co.kr/chat_list_app.php",
+ $.post("http://ku4h.com/chat_list_app.php",
    {
     no:no,
     member_srl:member_srl,
@@ -101,7 +122,7 @@ function save_chat() {
   }
 
 
-    $.post("http://atopynews.co.kr/chat_save_app.php",
+    $.post("http://ku4h.com/chat_save_app.php",
    {
     room_no:room_no,
     uuid:uuid,
@@ -151,7 +172,7 @@ check_new_chat();
   }
 
   console.log(last_no+" "+room_no+" "+check_chat); 
-   $.post("http://atopynews.co.kr/check_new_chat_no_app.php",
+   $.post("http://ku4h.com/check_new_chat_no_app.php",
    {
     
     last_no:last_no,
@@ -182,7 +203,7 @@ function reload_chat(room_no,last_no) {
   var last_no=last_no;
   var uuid=device.uuid;
   console.log('last_no'+last_no+" "+room_no);
-   $.post("http://atopynews.co.kr/check_list_app.php",
+   $.post("http://ku4h.com/check_list_app.php",
    {
     
     last_no:last_no,
@@ -209,7 +230,7 @@ function re_open_chat_room () {
   var no=$("#room_no").val();
   var uuid=device.uuid;
    console.log(member_srl);
- $.post("http://atopynews.co.kr/chat_list_app.php",
+ $.post("http://ku4h.com/chat_list_app.php",
    {
     no:no,
     member_srl:member_srl,
@@ -231,6 +252,41 @@ function close_chat_room() {
   navigator.notification.confirm("대화방을 나가시겠습니까 ?", exit_chat_room, "대화방", "예,아니요"); 
     
 }
+function delete_chat_room() {
+  navigator.notification.confirm("대화방이 없어집니다. 복구가 불가능합니다.", delete_room, "대화방", "예,아니요"); 
+    
+}
+function chat_member_list() {
+  var room_no=$("#room_no").val();
+  $.post("http://ku4h.com/chat_room_member_list.php",
+   {
+   
+    no:room_no
+       },
+   function(data){
+      
+var modal = UIkit.modal("#chat_member_modal");
+     modal.show();
+     $("#chat_member_contents").html(data);
+   });
+}
+
+
+function delete_room() {
+  var room_no=$("#room_no").val();
+  $.post("http://ku4h.com/delete_room.php",
+   {
+   
+    no:room_no
+       },
+   function(data){
+      $("#chat_room_modal").removeClass('active');
+        menu="chat";
+chat_show();
+var modal = UIkit.modal("#chat_setup_modal");
+     modal.hide();
+   });
+}
 
 function exit_chat_room(button) {
     if(button==2){//If User selected No, then we just do nothing
@@ -239,4 +295,27 @@ function exit_chat_room(button) {
         $("#chat_room_modal").removeClass('active');
         menu="chat";
     }
+}
+
+function delete_chat(room_no,no) {
+  var room_no=room_no;
+   var no=no;
+   UIkit.modal.confirm('삭제하시겠습니까?', function(){ 
+    delete_chat_go(no);
+  });
+
+    
+}
+
+function delete_chat_go(no) {
+  var no=no;
+  $.post("http://ku4h.com/delete_chat.php",
+   {
+   
+    no:no
+       },
+   function(data){
+     re_open_chat_room ();
+
+   });
 }

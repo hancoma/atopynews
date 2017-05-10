@@ -35,6 +35,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
           document.addEventListener("backbutton", onBackKeyDown, false);
+       
         app.receivedEvent('deviceready');
         
        
@@ -47,18 +48,63 @@ var app = {
         app.onmain();
     },
     onmain : function() {
-   
+    var reg_id=device.uuid;
+       // 기기 번호 검출 
 
-    main_show();
+          console.log('Received Event: ' + reg_id);
 
- 
-console.log("메인");
-//              var ref = cordova.InAppBrowser.open("http://www.atopynews.co.kr/index.php?mid=mobile_main&m=1", "_self", "location=no");
+          push = PushNotification.init({
+    android: {
+        senderID: "660804254402"
+    },
+    browser: {
+        pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+    },
+    ios: {
+        alert: "true",
+        badge: "true",
+        sound: "true"
+    },
+    windows: {}
+});
+          PushNotification.hasPermission(function(data) {
+    if (data.isEnabled) {
+        console.log('isEnabled');
+    }
+});
+
+
+push.on('registration', function(data) {
+    console.log(data.registrationId);
     
+     main_show();
+});
+
+push.on('notification', function(data) {
+  // alert(data.message);
+ // display_call_info(data.message);
+    modal = UIkit.modal.blockUI(data.message); 
+       setTimeout(function(){ modal.hide() }, 1000)
+ 
+  //alert_msg("알람",data.message);
+ 
+ 
+    
+   
+});
+
+push.on('error', function(e) {
+    // e.message
+    alert_msg("경고",e.message);
+});
+
+    
+       
 }
 };
 
 
 
+ 
 
 

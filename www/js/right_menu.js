@@ -8,36 +8,7 @@ function logout() {
 
 }
 // 내 정보 보기
-function view_mypage() {
 
-  var uuid=device.uuid;
- 
-    $.post("http://atopynews.co.kr/my_info_app.php",
-   {
-    uuid:uuid,
-    memberuid:memberuid
-    
-       },
-   function(data){
-
-  UIkit.offcanvas.hide('#offcanvas-right');
-var modal = UIkit.modal("#member_uk_modal");
-
-if ( modal.isActive() ) {
-    modal.hide();
-} else {
-    modal.show();
-}
- 
-
-$("#member_modal_contents").html(data);
-
-   });
-
-
-
-
-}
 
 function view_msg() {
   var uuid=device.uuid;

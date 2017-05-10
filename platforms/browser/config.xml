@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.mgallerybear.anyphoto" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.ku4h.atopynews" version="1.1.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Camera">
         <param name="browser-package" value="Camera" />
     </feature>
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>아토피뉴스</name>
-    <description>아토피뉴스</description>
-    <author email="ch7@daum.net" href="http://atopynews.co.kr">김대경</author>
+    <name>KU4H</name>
+    <description>KU4H</description>
+    <author email="ch7@daum.net" href="http://ku4h.com">김대경</author>
     <content src="index.html" />
     <icon src="icon.png" />
     <access origin="*" />
@@ -23,4 +23,5 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="fullscreen" value="false" />
     <preference name="android-windowSoftInputMode" value="adjustResize" />
+    <preference name="android-build-tool" value="gradle" />
 </widget>

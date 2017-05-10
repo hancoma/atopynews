@@ -89,7 +89,7 @@ function login_press(user_id,password) {
     var user_id=user_id;
     var password=password;
 
-     $.post("http://atopynews.co.kr/login_check.php",
+     $.post("http://ku4h.com/login_check.php",
    {
     user_id:user_id,
     password:password
@@ -104,13 +104,15 @@ function login_press(user_id,password) {
         window.localStorage.setItem("user_id", user_id);
         user_id = window.localStorage.getItem("user_id");
         console.log(user_id);
-               $.post("http://atopynews.co.kr/login_check_uid.php",
+               $.post("http://ku4h.com/login_check_uid.php",
                {
                 user_id:user_id
                    },
                function(data){
-                console.log(data);
+                
                 window.localStorage.setItem("member_srl", data);
+                member_srl = window.localStorage.getItem("member_srl");
+                console.log(member_srl);
                  location.replace('main.html') ;
                });
           
@@ -121,4 +123,71 @@ function login_press(user_id,password) {
 
     } 
    });
+}
+
+function join_press() {
+
+    var modal = UIkit.modal("#join_uk_modal",{center: true});
+           modal.show();
+            var telephone_number = window.localStorage.getItem("telephone_number");
+            if (!telephone_number) {
+              alert_msg("알림","전화번호가 없는 기기에서 회원가입이 불가합니다. ");
+            }
+           $("#join_telephone").val(telephone_number);
+}
+function save_member() {
+    var user_name=$("#user_name").val();
+    var join_email=$("#join_email").val();
+    var join_pw1=$("#join_pw1").val();
+    var join_pw2=$("#join_pw2").val();
+    var nick_name=$("#nick_name").val();
+    var telephone=$("#join_telephone").val();
+      if (!user_name) {
+        alert_msg("회원가입","이름을 입력하세요.");
+        return;
+    }
+    if (!join_email) {
+        alert_msg("회원가입","이메일을 입력하세요.");
+        return;
+    }
+     if (!telephone) {
+        alert_msg("회원가입","전화번호가 확인되지 않았습니다.");
+        return;
+    }
+     if (!join_pw1) {
+        alert_msg("회원가입","비밀번호를 입력하세요.");
+        return;
+    }
+       if (!join_pw2) {
+        alert_msg("회원가입","비밀번호를 입력하세요.");
+        return;
+    }
+
+       if (join_pw1!=join_pw2) {
+        alert_msg("회원가입","비밀번호가 다릅니다. 다시 입력하세요.");
+        return;
+    }
+
+    if (!nick_name) {
+        alert_msg("회원가입","닉네임을 입력 하세요.");
+        return;
+    }
+
+
+                $.post("http://ku4h.com/join_member.php",
+               {
+                email:join_email,
+                password:join_pw1,
+                nick_name:nick_name,
+                telephone:telephone,
+                user_name:user_name
+                   },
+               function(data){
+                console.log(data);
+                alert_msg("감사합니다.","회원가입이 완료 되었습니다.");
+  var modal = UIkit.modal("#join_uk_modal",{center: true});
+           modal.hide();
+
+               });
+
 }
