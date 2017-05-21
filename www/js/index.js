@@ -34,7 +34,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-       window.plugins.sim.getSimInfo(successCallback, errorCallback);
+     //  window.plugins.sim.getSimInfo(successCallback, errorCallback);
         app.receivedEvent('deviceready');
 
     },
@@ -142,7 +142,7 @@ function json_call(reg_id) {
 
  function successCallback(result) {
  telephone_number=result.phoneNumber;
-window.localStorage.setItem("telephone_number", result.phoneNumber);
+ //window.localStorage.setItem("telephone_number", result.phoneNumber);
 }
  
 function errorCallback(error) {
@@ -151,10 +151,10 @@ function errorCallback(error) {
  
 // check permission 
 function hasReadPermission() {
-  window.plugins.sim.hasReadPermission(successCallback, errorCallback);
+ // window.plugins.sim.hasReadPermission(successCallback, errorCallback);
 }
  
 // request permission 
 function requestReadPermission() {
-  window.plugins.sim.requestReadPermission(successCallback, errorCallback);
+ // window.plugins.sim.requestReadPermission(successCallback, errorCallback);
 }

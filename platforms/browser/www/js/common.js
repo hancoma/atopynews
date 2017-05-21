@@ -1,7 +1,7 @@
 var user_id = window.localStorage.getItem("user_id");
 var member_srl = window.localStorage.getItem("member_srl");
 var uuid=device.uuid;
-var basic_url="http://ku4h.com/";
+var basic_url="http://atopynews.co.kr/";
 var room_no=0;
 var menu;
 
@@ -36,7 +36,7 @@ function alert_msg(title,msg) {
 );
 }
 function load_left() {
-    $.post("http://ku4h.com/left_menu_app.php",
+    $.post("http://atopynews.co.kr/left_menu_app.php",
    {
     
     
@@ -47,7 +47,7 @@ $("#left_menu").html(data);
 }
 
 function load_right() {
-    $.post("http://ku4h.com/right_menu_app.php",
+    $.post("http://atopynews.co.kr/right_menu_app.php",
    {
     
     
@@ -63,7 +63,7 @@ function main_show() {
    $.ajax({
             type:"GET",
             data: { member_srl : member_srl },
-            url:"http://www.ku4h.com/app_data.php",
+            url:"http://www.atopynews.co.kr/app_data.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -76,7 +76,7 @@ function chat_show() {
   $.ajax({
             type:"GET",
             data: { member_srl : member_srl },
-            url:"http://www.ku4h.com/chat_room_list_app.php",
+            url:"http://www.atopynews.co.kr/chat_room_list_app.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -90,7 +90,7 @@ function talk_show() {
  $("#chat_icon").addClass('active');
  console.log(member_srl+"talk");
 
- $.post("http://ku4h.com/talk_list_app.php",
+ $.post("http://atopynews.co.kr/talk_list_app.php",
    {
     member_srl:member_srl
     
@@ -107,7 +107,7 @@ function photo_show(cat) {
   var cat=cat;
   // 지도 숨김 
   $("#photo_icon").addClass('active');
- $.post("http://ku4h.com/photo_list_app.php",
+ $.post("http://atopynews.co.kr/photo_list_app.php",
    {
     cat:cat
     
@@ -125,7 +125,7 @@ function photo_tag_show(tag) {
   // 지도 숨김 
   console.log(tag);
   $("#photo_icon").addClass('active');
- $.post("http://ku4h.com/photo_list_app.php",
+ $.post("http://atopynews.co.kr/photo_list_app.php",
    {
   
     tag:tag
@@ -153,7 +153,7 @@ function freeboard_show(cat) {
   member_srl=member_srl;
 $("#board_icon").addClass('active');
   $("#top_banner").html("커뮤니티");
- $.post("http://ku4h.com/freeboard_list_app.php",
+ $.post("http://atopynews.co.kr/freeboard_list_app.php",
    {
     cat:cat,
     member_srl:member_srl
@@ -172,7 +172,7 @@ function shop_show() {
   $("#shop_icon").addClass('active');
   $.ajax({
             type:"GET",
-            url:"http://www.ku4h.com/shop_list.php",
+            url:"http://www.atopynews.co.kr/shop_list.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -184,7 +184,7 @@ function blog_show() {
   $("#blog_icon").addClass('active');
   $.ajax({
             type:"GET",
-            url:"http://www.ku4h.com/atopy_blog.php",
+            url:"http://www.atopynews.co.kr/atopy_blog.php",
             success:function(data){
                 $("#main_contents").html(data);
             }
@@ -196,7 +196,7 @@ function qna_show(cat) {
    $("#map").hide();
   $("#top_banner").show();
   $("#top_banner").html("qna");
- $.post("http://ku4h.com/qna_list_app.php",
+ $.post("http://atopynews.co.kr/qna_list_app.php",
    {
     cat:cat
     
@@ -214,7 +214,7 @@ function goods_show(cat) {
    $("#map").hide();
   $("#top_banner").show();
   $("#top_banner").html("goods");
- $.post("http://ku4h.com/goods_list_app.php",
+ $.post("http://atopynews.co.kr/goods_list_app.php",
    {
     cat:cat
     
@@ -424,19 +424,19 @@ function contents_modal_show(menu,no) {
     var no=no;
    console.log(member_srl);
     if (menu=="photo") {
-      var url="http://ku4h.com/photo_info_modal_app.php";
+      var url="http://atopynews.co.kr/photo_info_modal_app.php";
     }
     if (menu=="freeboard") {
-      var url="http://ku4h.com/freeboard_info_modal_app.php";
+      var url="http://atopynews.co.kr/freeboard_info_modal_app.php";
     }
      if (menu=="qna") {
-      var url="http://ku4h.com/qna_info_modal_app.php";
+      var url="http://atopynews.co.kr/qna_info_modal_app.php";
     }
      if (menu=="goods") {
-      var url="http://ku4h.com/goods_info_modal_app.php";
+      var url="http://atopynews.co.kr/goods_info_modal_app.php";
     }
     if (menu=="shop") {
-     var url="http://ku4h.com/shop_info_modal_app.php"; 
+     var url="http://atopynews.co.kr/shop_info_modal_app.php"; 
     }
 
 
@@ -490,7 +490,7 @@ function open_shop(no) {
   var no=no;
   console.log(no);
   $("#shop_modal_contents").html("");
-    $.post("http://ku4h.com/shop_info_modal_app.php",
+    $.post("http://atopynews.co.kr/shop_info_modal_app.php",
    {
     no:no
     
@@ -549,7 +549,7 @@ function msg_send(uid,msg) {
 function add_photo(cat) {
   var cat=cat;
   console.log("category="+cat)
-    $.post("http://ku4h.com/photo_camera_app.php",
+    $.post("http://atopynews.co.kr/photo_camera_app.php",
    {
     member_srl:member_srl,
     cat:cat
@@ -573,7 +573,7 @@ var modal = UIkit.modal("#add_contents_uk_modal");
 function add_freeboard(cat) {
   var cat=cat;
   console.log("freeboard category="+member_srl);
-    $.post("http://ku4h.com/freeboard_app.php",
+    $.post("http://atopynews.co.kr/freeboard_app.php",
    {
     member_srl:member_srl,
     cat:cat
@@ -597,7 +597,7 @@ var modal = UIkit.modal("#add_contents_uk_modal");
 function add_qna(cat) {
   var cat=cat;
   console.log("qna category="+member_srl);
-    $.post("http://ku4h.com/qna_app.php",
+    $.post("http://atopynews.co.kr/qna_app.php",
    {
     member_srl:member_srl,
     cat:cat
@@ -622,7 +622,7 @@ var modal = UIkit.modal("#add_contents_uk_modal");
 function add_goods(cat) {
   var cat=cat;
   console.log("goods category="+member_srl);
-    $.post("http://ku4h.com/goods_app.php",
+    $.post("http://atopynews.co.kr/goods_app.php",
    {
     member_srl:member_srl,
     cat:cat
@@ -753,7 +753,7 @@ function view_mypage() {
   function delete_contents(mode,no) {
   var mode=mode;
    var no=no;
-    $.post("http://ku4h.com/freeboard_delete.php",
+    $.post("http://atopynews.co.kr/freeboard_delete.php",
    {
    
     no:no
@@ -769,7 +769,7 @@ function view_mypage() {
  
    var no=no;
 
-    $.post("http://ku4h.com/freeboard_comment.php",
+    $.post("http://atopynews.co.kr/freeboard_comment.php",
    {
    
     no:no
@@ -784,7 +784,7 @@ function view_mypage() {
 
 function check_msg() {
  console.log("메시지 채크");
-  $.post("http://ku4h.com/check_msg.php",
+  $.post("http://atopynews.co.kr/check_msg.php",
    {
     member_srl:member_srl
        },
