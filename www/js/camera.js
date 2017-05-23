@@ -103,7 +103,7 @@ sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         options.chunkedMode = false;
 
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://ku4h.com/upload_app.php", win, fail, options);
+        ft.upload(imageURI, "http://atopynews.co.kr/upload_app.php", win, fail, options);
     }
 
  function uploadPhoto_pic(imageURI) {
@@ -127,14 +127,14 @@ sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         options.chunkedMode = false;
 
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://ku4h.com/upload_file_app.php", win_board, fail, options);
+        ft.upload(imageURI, "http://atopynews.co.kr/upload_file_app.php", win_board, fail, options);
     }
 // 게시판 사진 첨부
 
 function win_board(r) {
       
 navigator.notification.activityStop();
-      var img_src="http://ku4h.com/photo/"+member_srl+"_"+add_code+".jpg";
+      var img_src="http://atopynews.co.kr/photo/"+member_srl+"_"+add_code+".jpg";
       var file_name=member_srl+"_"+add_code+".jpg";
       console.log(img_src);
       $("#img_board").attr("src", img_src);

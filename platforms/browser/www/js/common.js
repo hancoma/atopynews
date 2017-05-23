@@ -4,7 +4,10 @@ var uuid=device.uuid;
 var basic_url="http://atopynews.co.kr/";
 var room_no=0;
 var menu;
-
+function about_show() {
+  var url="https://atopynews.modoo.at/";
+  open_url(url);
+}
 function open_url(url) {
   var url=url
   var ref = cordova.InAppBrowser.open(url, '_self', 'location=no');
@@ -69,6 +72,30 @@ function main_show() {
             }
         })
 }
+
+function lom_show() {
+   $.ajax({
+            type:"GET",
+            data: { member_srl : member_srl },
+            url:"http://www.atopynews.co.kr/6lom_data.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+}
+
+
+function news_show() {
+   $.ajax({
+            type:"GET",
+            data: { member_srl : member_srl },
+            url:"http://www.atopynews.co.kr/news_data.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+}
+
 function chat_show() {
   menu="chat";
   console.log("대화방");
