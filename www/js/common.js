@@ -73,6 +73,18 @@ function main_show() {
         })
 }
 
+function atopy_show() {
+   $.ajax({
+            type:"GET",
+            data: { member_srl : member_srl },
+            url:"http://www.atopynews.co.kr/atopy_data.php",
+            success:function(data){
+                $("#main_contents").html(data);
+            }
+        })
+}
+
+
 function lom_show() {
    $.ajax({
             type:"GET",
