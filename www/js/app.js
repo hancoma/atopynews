@@ -48,6 +48,8 @@ var app = {
         app.onmain();
     },
     onmain : function() {
+          main_show();
+          
     var reg_id=device.uuid;
        // 기기 번호 검출 
 
@@ -77,7 +79,7 @@ var app = {
 push.on('registration', function(data) {
     console.log(data.registrationId);
     
-     main_show();
+   
 });
 
 push.on('notification', function(data) {
