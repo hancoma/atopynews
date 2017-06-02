@@ -48,7 +48,8 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-           app.onmain();
+         location.replace('main.html') ;
+           // app.onmain();
     },
 
     onmain : function() {
